@@ -40,6 +40,18 @@ jobs:
         working-directory: ${{ matrix.component }}
 
     - name: Build
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        build-args: |
+        context: ${{ matrix.component }}/.
+        push: false
+        file: ${{ matrix.component }}/docker/Dockerfile
+        platforms: linux/amd64
+        tags: |
+          ghcr.io/${{ github.repository_owner }}/podtato-${{ matrix.component }}:${{ github.sha }}
+
+    - name: Build
       id: docker_build_push
       uses: docker/build-push-action@v2
       with:
