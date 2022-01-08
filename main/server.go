@@ -136,7 +136,7 @@ func main() {
 
 	serviceVersion = c.MainVersion
 
-	unusedVariable := "test"
+	//unusedVariable := "test"
 	
 	// create a new handler
 	handler := HTTPHandler{}
